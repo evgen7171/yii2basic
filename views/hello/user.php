@@ -14,9 +14,10 @@ foreach ($files as $file) {
     }
     $images[] = $dir . '/' . $file;
 }
+
 ?>
 
-Привет, <?= $username ?> !
+Привет, <?= $username ?>!
 <hr>
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">

@@ -16,10 +16,9 @@ class HelloController extends Controller
 {
     public function actionUser()
     {
-        $id = Yii::$app->user->identity->getId();
-        $username = User::findIdentity($id)->username;
-        return $username ?
-            $this->render('user', ['username' => $username]) :
-            $this->render('error');
+        $username = !Yii::$app->user->isGuest ?
+            User::findIdentity(Yii::$app->user->getId())->username :
+            'гость';
+        return $this->render('user', ['username' => $username]);
     }
 }
