@@ -9,7 +9,14 @@ $config = [
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
+        '@google' => 'http://google.com',
+        '@yandex' => 'http://yandex.ru'
+    ],
+    'modules' => [
+        'admin' => [
+            'class' => \app\modules\admin\Module::class
+        ],
     ],
     'components' => [
         'request' => [
@@ -49,6 +56,9 @@ $config = [
             'rules' => [
             ],
         ],
+        'messenger'=>[
+            'class'=>'app\components\MessengerComponent'
+        ],
     ],
     'params' => $params,
 ];
@@ -60,6 +70,7 @@ if (YII_ENV_DEV) {
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['*'],
     ];
 
     $config['bootstrap'][] = 'gii';
@@ -67,6 +78,7 @@ if (YII_ENV_DEV) {
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['*'],
     ];
 }
 
