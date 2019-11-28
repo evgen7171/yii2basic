@@ -1,8 +1,10 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
+use app\models\User;
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
@@ -11,6 +13,12 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
+
+//получаем предыдущую страницу
+$prevPage = Yii::$app->session->get('prevPage');
+//сохраняем предыдущую страницу
+Yii::$app->session->set('prevPage', $_SERVER['REQUEST_URI']);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -38,12 +46,14 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/yii']],
-            ['label' => 'Hello', 'url' => ['/hello/user']],
+            ['label' => 'Календарь', 'url' => ['/day/all']],
+            User::getUserName() != 'admin' ?
+                (['label' => 'Hello', 'url' => ['/hello/user']]) :
+                (['label' => 'Admin', 'url' => ['/admin']]),
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+            ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
@@ -65,6 +75,10 @@ AppAsset::register($this);
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
+
+        <br>
+        <?= \Yii::$app->messenger->display('Вернуться на предыдущую страницу', ['link' => $prevPage]); ?>
+
     </div>
 </div>
 

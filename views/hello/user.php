@@ -1,19 +1,10 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Админ
+ * UsersController: Админ
  * Date: 24.11.2019
  * Time: 23:28
  */
-$dir = '/images/hello';
-$files = scandir($_SERVER['DOCUMENT_ROOT'] . $dir);
-$images = [];
-foreach ($files as $file) {
-    if ($file == '.' || $file == '..') {
-        continue;
-    }
-    $images[] = $dir . '/' . $file;
-}
 
 ?>
 
