@@ -8,19 +8,16 @@
 
 namespace app\models;
 
-class Day extends \yii\base\Model
+use yii\db\ActiveRecord;
+
+class Day extends ActiveRecord // \yii\base\Model
 {
     /**
-     * Рабочий или выходной день
-     * @var boolean
+     * дата дня
+     * - в формате (timestamp)
+     * @var int
      */
-    public $isWorkDay;
-
-    /**
-     * название дня
-     * @var string
-     */
-    public $name;
+    public $date;
 
     /**
      * события дня
@@ -31,8 +28,7 @@ class Day extends \yii\base\Model
     public function attributeLabels()
     {
         return [
-            'name' => 'День недели',
-            'isWorkDay' => 'Рабочий или выходной день',
+            'date' => 'Дата',
             'activities' => 'События'
         ];
     }

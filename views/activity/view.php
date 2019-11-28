@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\UserModel */
+/* @var $model app\models\Activity */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'User Models', 'url' => ['index']];
+$this->title = $model->title;
+$this->params['breadcrumbs'][] = ['label' => 'Activities', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="user-model-view">
+<div class="activity-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -30,10 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'username',
-            'password',
-            'authKey',
-            'accessToken',
+            'title',
+            'idAuthor',
+            'body:ntext',
+            'start_day',
+            'end_day',
+            'main',
+            'repeat',
         ],
     ]) ?>
 

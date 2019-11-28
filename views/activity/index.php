@@ -1,20 +1,41 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Админ
- * Date: 26.11.2019
- * Time: 23:00
- */
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'События';
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
-<h1>Событие: <?= $model->title ?></h1>
+<div class="activity-index">
 
-<h3><?= $model->getAttributeLabel('startDay') ?></h3>
-<p><?= $model->startDay ?></p>
+    <h1><?= Html::encode($this->title) ?></h1>
 
-<h3><?= $model->getAttributeLabel('endDay') ?></h3>
-<p><?= $model->endDay ?></p>
+    <p>
+        <?= Html::a('Создать событие', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
-<h3><?= $model->getAttributeLabel('bodyDay') ?></h3>
-<p><?= $model->body ?></p>
 
-<p>Создал: <?= $model->idAuthor ?></p>
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => [
+//            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'title',
+            'idAuthor',
+            'body:ntext',
+            'start_day',
+            'end_day',
+            'main',
+            'repeat',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
+
+</div>

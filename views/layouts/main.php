@@ -46,7 +46,7 @@ Yii::$app->session->set('prevPage', $_SERVER['REQUEST_URI']);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/yii']],
+            ['label' => 'Календарь', 'url' => ['/day/all']],
             User::getUserName() != 'admin' ?
                 (['label' => 'Hello', 'url' => ['/hello/user']]) :
                 (['label' => 'Admin', 'url' => ['/admin']]),
@@ -76,7 +76,8 @@ Yii::$app->session->set('prevPage', $_SERVER['REQUEST_URI']);
         <?= Alert::widget() ?>
         <?= $content ?>
 
-        <?= \Yii::$app->messenger->display('Вернуться на предыдущую страницу', $prevPage); ?>
+        <br>
+        <?= \Yii::$app->messenger->display('Вернуться на предыдущую страницу', ['link' => $prevPage]); ?>
 
     </div>
 </div>

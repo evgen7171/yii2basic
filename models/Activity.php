@@ -8,12 +8,14 @@
 
 namespace app\models;
 
+use yii\db\ActiveRecord;
+
 /**
  * сущность события
  * Class Activity
  * @package app\models
  */
-class Activity extends \yii\base\Model
+class Activity extends ActiveRecord
 {
     /**
      * повторяемость события
